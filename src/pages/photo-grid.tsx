@@ -1,20 +1,21 @@
+import React from "react";
+import { useSearchParams } from "react-router-dom";
 import {Header} from "@components/header";
-import {Footer} from "@components/footer.tsx";
-import MasonryGrid from "@components/masonry-grid.tsx";
-import {useState} from "react";
+import {MasonryGrid} from "@components/masonry-grid";
 
-export function PhotoGrid() {
-    const [searchQuery, setSearchQuery] = useState<string>('nature');
+
+export const  PhotoGrid = React.memo(() => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchQuery = searchParams.get("query") || "nature";
 
     const handleSearch = (query: string) => {
-        setSearchQuery(query);
+        setSearchParams({ query });
     };
 
     return (
         <div>
             <Header onSearch={handleSearch} />
-            <MasonryGrid />
-            <Footer />
+            <MasonryGrid searchQuery={searchQuery} />
         </div>
     );
-}
+});

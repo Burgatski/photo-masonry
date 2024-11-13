@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*", "src/**/*.tsx", "src/**/*.ts", "src/__tests__/**/*"],
+  "exclude": ["node_modules"]
+}

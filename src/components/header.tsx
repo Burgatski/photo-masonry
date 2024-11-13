@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useFetchSearchImage } from "@hooks/use-fetch-search-image.ts";
-import { SearchBar } from "@components/search.tsx";
+import { useFetchSearchImage } from "@hooks/use-fetch-search-image";
+import { SearchBar } from "@components/search";
 
 interface HeaderProps {
     onSearch: (query: string) => void;
 }
 
-export function Header({ onSearch }: HeaderProps) {
+export const Header = ({ onSearch }: HeaderProps) => {
     const { image, loading, error } = useFetchSearchImage('nature');
     const headerRef = useRef<HTMLDivElement>(null);
     const [isSticky, setIsSticky] = useState(false);

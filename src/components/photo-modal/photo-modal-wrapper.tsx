@@ -1,15 +1,15 @@
 import React from 'react';
 import {useParams, useNavigate, useLocation} from 'react-router-dom';
-import {PhotoModal} from '@components/photo-modal/photo-modal.tsx';
-import { usePhotoContext } from "../../context/photo-context.tsx";
-import {useFetchImage} from "@hooks/use-fetch-image.ts";
+import {PhotoModal} from '@components/photo-modal/photo-modal';
+import { usePhotoContext } from "../../context/photo-context";
+import {useFetchImage} from "@hooks/use-fetch-image";
 
 export const PhotoModalWrapper: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const { photos } = usePhotoContext();
     const navigate = useNavigate();
     const location = useLocation();
-    const existingPhoto = photos.find((p) => p.id === id);
+    const existingPhoto = photos.find((p) => p.id === Number(id));
     const { photo, loading, error } = useFetchImage(id || '');
 
     const handleCloseModal = () => {
@@ -23,7 +23,7 @@ export const PhotoModalWrapper: React.FC = () => {
 
     return (
         <PhotoModal
-            photo={displayedPhoto}
+            photo={displayedPhoto!}
             isOpen={!!displayedPhoto || loading}
             onRequestClose={handleCloseModal}
             loading={loading}

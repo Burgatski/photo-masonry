@@ -1,7 +1,7 @@
 import React, {useRef, useCallback, useEffect} from 'react';
 import {useFetchImages} from '@hooks/use-fetch-images';
-import {PhotoCard} from '@components/photo-card.tsx';
-import {usePhotoContext} from "../context/photo-context.tsx";
+import {PhotoCard} from '@components/photo-card';
+import {usePhotoContext} from "../context/photo-context";
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import {IPhoto} from "../types/photo";
 
@@ -36,18 +36,18 @@ export const MasonryGrid: React.FC<MasonryGridProps> = () => {
         }
     }, [scrollPosition]);
 
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         if (location.pathname === '/') {
             setScrollPosition(window.scrollY);
         }
-    };
+    }, [location.pathname, setScrollPosition]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [location.pathname]);
+    }, [handleScroll]);
 
     const handlePhotoClick = (photoId: number) => {
         navigate(`/photo/${photoId}`, {state: {backgroundLocation: location.pathname}});
@@ -59,10 +59,13 @@ export const MasonryGrid: React.FC<MasonryGridProps> = () => {
             if (observerRef.current) observerRef.current.disconnect();
 
             observerRef.current = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting && canLoadMore) {
-                    setPage((prevPage) => prevPage + 1);
-                }
-            });
+                    if (entries[0].isIntersecting && canLoadMore) {
+                        setPage((prevPage) => prevPage + 1);
+                    }
+                },
+                {rootMargin: '300px', threshold: 1}
+            );
+
 
             if (node) observerRef.current.observe(node);
         },

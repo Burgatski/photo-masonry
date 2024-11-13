@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
 import {PhotoGrid} from '@pages/photo-grid';
 import {PhotoProvider} from "./context/photo-context";
-import {PhotoModalWrapper} from "@components/photo-modal/photo-modal-wrapper.tsx";
+import {PhotoModalWrapper} from "@components/photo-modal/photo-modal-wrapper";
 
 function App() {
     return (

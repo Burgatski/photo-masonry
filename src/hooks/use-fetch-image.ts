@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import apiClient from "../api/api-сlient.ts";
+import apiClient from "../api/api-сlient";
 import {IPhoto} from "../types/photo";
 
-export function useFetchImage(photoId: string) {
+export const useFetchImage = (photoId: string) => {
     const [photo, setPhoto] = useState<IPhoto | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

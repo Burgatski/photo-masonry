@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import apiClient from "../api/api-сlient.ts";
+import apiClient from "../api/api-сlient";
 import {IPhoto} from "../types/photo";
 
 interface FetchSearchImageResult {
@@ -8,7 +8,7 @@ interface FetchSearchImageResult {
     error: string | null;
 }
 
-export function useFetchSearchImage(query: string, perPage: number = 1): FetchSearchImageResult {
+export const useFetchSearchImage = (query: string, perPage: number = 1): FetchSearchImageResult =>{
     const [image, setImage] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

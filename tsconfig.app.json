@@ -15,11 +15,9 @@
         "src/utils/*"
       ],
     },
-    "types": [
-      "node"
-    ],
+    "types": ["vitest", "node"],
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
+    "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": [
       "ES2020",
@@ -43,6 +41,9 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [
-    "src"
+    "src",
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "vite.config.ts"
   ]
 }

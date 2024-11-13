@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import { getPhotoOrientation } from './utils/get-photo-orientation.ts';
-import {Link} from "react-router-dom";
-import {IPhoto} from "../types/photo";
-import {calculateRowSpan} from "@components/utils/calculate-row.ts";
+import React, { useState } from 'react';
+import { getPhotoOrientation } from './utils/get-photo-orientation';
+import { Link } from "react-router-dom";
+import { IPhoto } from "../types/photo";
+import { calculateRowSpan } from "@components/utils/calculate-row";
 
 interface PhotoCardProps {
     photo: IPhoto;
@@ -23,9 +23,9 @@ export const PhotoCard: React.FC<PhotoCardProps> = React.memo(({ photo, onClick 
     };
 
     return (
-        <div className={`${orientationClass} group mb-4`} style={photoCardStyle} onClick={onClick}>
+        <div data-testid="photo-card" className={`${orientationClass} group mb-4`} style={photoCardStyle} onClick={onClick}>
             <div className="card-body relative bg-gray-300 overflow-hidden">
-                {!isLoaded && <div className="skeleton-loader w-full h-full absolute top-0 left-0 bg-gray-200"></div>}
+                {!isLoaded && <div data-testid="skeleton-loader" className="skeleton-loader w-full h-full absolute top-0 left-0 bg-gray-200"></div>}
                 <Link to={`/photo/${photo.id}`} className="block" state={{ backgroundLocation: location.pathname }}>
                     <img
                         src={photo.src.large || '/default.png'}
